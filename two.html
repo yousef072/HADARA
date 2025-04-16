@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: tahoma;
+        color: white;
+    }
+    body {
+        background-color: #001624;
+        display: grid;
+        grid-template-rows: 100%;
+        grid-template-columns: 100%;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        width: 100%;
+        gap: 15px;
+        height: 100vh;
+        overflow-y: hidden;
+    }
+    img {
+        width: 92%;
+        height: 100%;
+        padding: 20px;
+    }
+    .button {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 18px;
+        left: 30px;
+    }
+</style>
+<body>
+    <img src="S.png" alt="">
+    <div class="button"></div>
+</body>
+<script>
+        document.querySelector(".button").onclick = () => {
+        location.href = "index.html"
+    }
+</script>
+</html>
