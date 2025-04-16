@@ -4,17 +4,209 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <title>Document</title>
 </head>
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: tahoma;
+    }
     body {
         background-color: #002339;
+        display: grid;
+        grid-template-rows: 5% 10% 15% 35% 22%;
+        grid-template-columns: 100%;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        width: 100%;
+        gap: 15px;
+        height: 100vh;
+        overflow-y: hidden;
     }
     .Logo-title {
-        color: red;
+        color: #DFAD4A;
+        letter-spacing: 5px;
+        font-size: 45px;
+        margin-top: 15px;
+    }
+    .tebol {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 73% 23%;
+        gap: 10px;
+        grid-template-rows: 100%;
+        align-items: center;
+    }
+    .tebol .search {
+        height: 50%;
+        width: 100%;
+        background-color: #DFAD4A;
+        margin-left: 10px;
+        border-radius: 17px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-left: 10px;
+    }
+    .tebol .search input {
+        background-color: transparent;
+        border: none;
+        color: #002339;
+    }
+    .tebol .search input::placeholder {
+        color: #002339;
+        font-weight: 600;
+    }
+    img {
+        width: 100%;
+
+    }
+    #map {
+        width: 100%;
+        height: 100%;
+        background-color: #DFAD4A;
+        border-radius: 19px;
+        border: 4px solid #DFAD4A;
+    }
+    .icons {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        grid-template-rows: 100%;
+        justify-content: space-between;
+        padding: 0 9%;
+    }
+    .icons div {
+        width: 100%;
+        height: 100%;
+        background-color: #002339;
+        border: solid 3px #DFAD4A;
+        border-radius: 10px;
+    }
+    .icons img {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+    }
+    .datas {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 100%;
+        padding: 15px;
+    }
+    .datas .orders {
+        display: grid;
+        width: 100%;
+        height: 100%;
+        grid-template-columns: 100%;
+        grid-template-rows: 55% 35%;
+        row-gap: 10%;
+        padding: 10px;
+    }
+    .datas .orders div {
+        border: solid 3px #DFAD4A;
+        border-radius: 15px;
+    }
+    .datas .orders .date {
+        background-color: #DFAD4A;
+    }
+    .datas .orders .count {
+        color: #DFAD4A;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .datas .orders .count button {
+        width: 80%;
+        border: none;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: #DFAD4A;
+        color: white;
+        font-weight: 700;
+    }
+    .datas .orders .date {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        gap: 10px;
+    }
+    .body-data-tower {
+        width: 90%;
+        height: 100%;
+        background-color: #EBC57E;
+        border-radius: 10px;
+    }
+    .body-data-tower img {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
     }
 </style>
 <body>
     <h1 class="Logo-title">HADARA</h1>
+    <div class="tebol">
+        <div class="search"><i class="fa fa-search"></i><input class="search-input-bar" placeholder="Enter Here"></div>
+        <img src="Screenshot 2025-04-16 110845.png" class="logo">
+    </div>
+    <div class="icons">
+        <div class="icon1"><img src="1.png" alt="" srcset=""></div>
+        <div class="icon2"><img src="2.png" alt="" srcset=""></div>
+        <div class="icon3"><img src="3.png" alt="" srcset=""></div>
+    </div>
+    <div class="datas">
+        <div id="map"></div>
+        <div class="orders">
+            <div class="count">
+                <h2>1530 L.E</h2>
+                <button>confirm</button>
+            </div>
+            <div class="date">
+                <h3 class="date-day">Today</h3>
+                <h4 class="date-hour">11:00AM</h4>
+            </div>
+        </div>
+    </div>
+    <div class="body-data-tower"><img src="Screensho.png" alt=""></div>
 </body>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="all.js"></script>
+<script>
+    document.querySelector(".icon1").onclick = () => {
+        location.href = "two.html"
+    }
+    document.querySelector(".icon2").onclick = () => {
+        location.href = "two copy.html"
+    }
+    document.querySelector(".icon3").onclick = () => {
+        location.href = "two copy 2.html"
+    }
+    // حدد الإحداثيات ومستوى الزوم
+    var map = L.map('map').setView([30.033333, 31.233334], 13); // القاهرة كمثال
+  
+    // حط طبقة الخريطة
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+  
+    // حط ماركر
+    L.marker([30.033333, 31.233334]).addTo(map)
+
+      .openPopup();
+  </script>
+  
 </html>
